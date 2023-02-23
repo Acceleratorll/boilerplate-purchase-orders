@@ -52,7 +52,7 @@ class PurchaseOrderController extends Controller
     {
     }
 
-    public function postPurchaseOrderLineInsert(PolsRequest $request, PurchaseOrderLine $purchaseOrderLine)
+    public function getPurchaseOrderLinesInsert(PolsRequest $request, PurchaseOrderLine $purchaseOrderLine)
     {
         // $purchaseOrderLine->product_id = $request->post('product');
         $purchaseOrderLine->qty = $request['qty'];

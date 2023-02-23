@@ -71,11 +71,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('products/{id}/edit', 'PurchaseOrderController@getProductEdit')->name('products.edit');
     Route::get('products/{id}/destroy', 'PurchaseOrderController@getProductDestroy')->name('products.destroy');
     Route::get('purchase-order-lines', 'PurchaseOrderController@getPurchaseOrderLinesList')->name('purchase.order.lines');
-    Route::post('purchase-order-lines/create', 'PurchaseOrderController@getPurchaseOrderLinesCreate')->name('purchase.order.lines.create');
+    Route::get('purchase-order-lines/create', 'PurchaseOrderController@getPurchaseOrderLinesCreate')->name('purchase.order.lines.create');
     Route::get('purchase-order-lines/{id}', 'PurchaseOrderController@getPurchaseOrderLinesShow')->name('purchase.order.lines.show');
     Route::get('purchase-order-lines/{id}/edit', 'PurchaseOrderController@getPurchaseOrderLinesEdit')->name('purchase.order.lines.edit');
     Route::get('purchase-order-lines/{id}/destroy', 'PurchaseOrderController@getPurchaseOrderLinesDestroy')->name('purchase.order.lines.destroy');
-    Route::post('purchase-order-lines/create', 'PurchaseOrderController@getPurchaseOrderLinesInsert')->name('purchase.order.lines.insert');
+    Route::post('purchase-order-lines/insert', 'PurchaseOrderController@getPurchaseOrderLinesInsert')->name('purchase.order.lines.insert');
 });
 
 
