@@ -11,6 +11,7 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
 
 /**
  * Auth routes
@@ -65,6 +66,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('permissions/{user}/repeat', 'PermissionController@repeat')->name('permissions.repeat');
     Route::get('dashboard/log-chart', 'DashboardController@getLogChartData')->name('dashboard.log.chart');
     Route::get('dashboard/registration-chart', 'DashboardController@getRegistrationChartData')->name('dashboard.registration.chart');
+    Route::get('products', 'PurchaseOrderController@getProductList')->name('products');
+    Route::get('products/{id}', 'PurchaseOrderController@getProductShow')->name('products.show');
+    Route::get('products/{id}/edit', 'PurchaseOrderController@getProductEdit')->name('products.edit');
+    Route::get('products/{id}/destroy', 'PurchaseOrderController@getProductDestroy')->name('products.destroy');
+    Route::get('purchase-order-lines', 'PurchaseOrderController@getPurchaseOrderLinesList')->name('purchase.order.lines');
+    Route::post('purchase-order-lines/create', 'PurchaseOrderController@getPurchaseOrderLinesCreate')->name('purchase.order.lines.create');
+    Route::get('purchase-order-lines/{id}', 'PurchaseOrderController@getPurchaseOrderLinesShow')->name('purchase.order.lines.show');
+    Route::get('purchase-order-lines/{id}/edit', 'PurchaseOrderController@getPurchaseOrderLinesEdit')->name('purchase.order.lines.edit');
+    Route::get('purchase-order-lines/{id}/destroy', 'PurchaseOrderController@getPurchaseOrderLinesDestroy')->name('purchase.order.lines.destroy');
+    Route::post('purchase-order-lines/create', 'PurchaseOrderController@getPurchaseOrderLinesInsert')->name('purchase.order.lines.insert');
 });
 
 

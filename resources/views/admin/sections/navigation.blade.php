@@ -92,6 +92,23 @@
                   </li>
                 </ul>
             </div>
+            <div class="menu_section">
+                <h3>{{ __('views.backend.section.navigation.sub_header_4') }}</h3>
+                <ul class="nav side-menu">
+                    <li>
+                        <a href="{{ route('admin.products') }}">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            {{ __('views.backend.section.navigation.menu_4_1') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.purchase.order.lines') }}">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            {{ __('views.backend.section.navigation.menu_4_2') }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
         <!-- /sidebar menu -->
     </div>
