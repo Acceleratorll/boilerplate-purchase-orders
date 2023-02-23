@@ -24,7 +24,8 @@ class PolsRequest extends FormRequest
     public function rules()
     {
         return [
-            'qty' => 'required|integer|max:20',
+            'product_id' => 'required',
+            'qty' => 'required',
             'price' => 'required',
             'discount' => 'required',
         ];

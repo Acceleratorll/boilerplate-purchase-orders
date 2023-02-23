@@ -7,6 +7,19 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             {{ Form::open(['route'=>['admin.purchase.order.lines.insert'],'method' => 'post','class'=>'form-horizontal form-label-left']) }}
 
+            <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="product">
+                        {{ __('views.admin.purchase.order.lines.create.product') }}
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <select id="product_id" name="product_id" class="select2" style="width: 100%" autocomplete="off">
+                            @foreach($products as $product)
+                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="qty" >
                         {{ __('views.admin.purchase.order.lines.create.qty') }}

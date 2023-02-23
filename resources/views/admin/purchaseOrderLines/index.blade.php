@@ -28,10 +28,12 @@
             <tbody>
             @foreach($pols as $pol)
                 <tr>
-                    <td>{{ $pol->name }}</td>
-                    <td>{{ $pol->code }}</td>
+                    <td>{{ $pol->product->name ?? 'None'}}</td>
+                    <td>{{ $pol->qty }}</td>
                     <td>{{ $pol->price }}</td>
-                    {{-- <td>{{ $pol->deleted_at }}</td> --}}
+                    <td>{{ $pol->discount }}</td>
+                    <td>{{ $pol->total }}</td>
+                    <td>{{ $pol->deleted_at }}</td>
                     <td>{{ $pol->created_at }}</td>
                     <td>{{ $pol->updated_at }}</td>
                     <td>

@@ -44,8 +44,8 @@ class PurchaseOrderController extends Controller
 
     public function getPurchaseOrderLinesCreate()
     {
-
-        return view('admin.purchaseOrderLines.create');
+        $products = Product::all();
+        return view('admin.purchaseOrderLines.create', ['products' => $products]);
     }
 
     public function getPurchaseOrderLinesEdit($id)
@@ -55,6 +55,7 @@ class PurchaseOrderController extends Controller
     public function getPurchaseOrderLinesInsert(PolsRequest $request, PurchaseOrderLine $purchaseOrderLine)
     {
         // $purchaseOrderLine->product_id = $request->post('product');
+        $purchaseOrderLine->product_id = $request['product_id'];
         $purchaseOrderLine->qty = $request['qty'];
         $purchaseOrderLine->price = $request['price'];
         $purchaseOrderLine->discount = $request['discount'];

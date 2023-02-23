@@ -15,4 +15,8 @@ class Product extends Model
         'code',
         'price'
     ];
+
+    public function purchaseOrderLines(){
+        return $this->hasMany(PurchaseOrderLine::class);
+    }
 }

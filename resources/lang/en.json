@@ -140,6 +140,7 @@
     "views.admin.purchase.order.lines.index.table_header_6": "Created At",
     "views.admin.purchase.order.lines.index.table_header_7": "Updated At",
     "views.admin.purchase.order.lines.create.title": "Create Purchase Order Lines",
+    "views.admin.purchase.order.lines.create.product": "Product",
     "views.admin.purchase.order.lines.create.qty": "QTY",
     "views.admin.purchase.order.lines.create.price": "Price",
     "views.admin.purchase.order.lines.create.discount": "Discount",
