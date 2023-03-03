@@ -117,6 +117,18 @@ class DashboardController extends Controller
     public function getDataProduct()
     {
         $products = Product::all();
+        for ($i = 0; $i < count($products); $i++) {
+            if ($products[$i]["price"] <= 50000) {
+                $products[$i]['price_range'] = 'less_50k';
+            } else if ($products[$i]["price"] > 50000 && $products[$i]["price"] <= 99999) {
+                $products[$i]['price_range'] = '_50k_99k';
+            } else if ($products[$i]["price"] > 100000 && $products[$i]["price"] <= 999999) {
+                $products[$i]['price_range'] = '_100k_999k';
+            } else {
+                $products[$i]['price_range'] = 'more_1m';
+            }
+            $products[$i]['created_range'] = substr($products[$i]['created_at'], 0, 7);
+        }
         return response($products);
     }
 

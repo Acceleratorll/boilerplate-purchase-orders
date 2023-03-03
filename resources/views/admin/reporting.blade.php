@@ -1,42 +1,55 @@
 @extends('admin.layouts.admin')
 
 @section('content')
+    <!-- page content -->
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
           Halaman reporting  
         </div>
         <div class="row">
             <div class="col-md-6 col-sm-6 col-xs-6">
-                <select id="products" name="products[]" class="js-example-basic-multiple" multiple="multiple" style="width: 100%" autocomplete="off">
+                <select id="products" name="products[]" class="select2" multiple="multiple" style="width: 100%" autocomplete="off">
                     @foreach($products as $product)
                         <option value="{{ $product->id }}">{{ $product->name }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="col-md-6">
-                <input name="dates"/>
+                <input name="dates" style="width: 100%"/>
             </div>
         </div>
-        <div id="product_price_range" class="x_panel tile">
-            <canvas class="canvasChartProduct" height="520" width="520" style="margin: 15px 10px 10px 0">
+        <div id="product_price_range">
+            <canvas class="canvasChartProduct">
             </canvas>
         </div>
+        <div id="output" style="margin: 30px;"></div>
     </div>
 @endsection
 
 @section('scripts')
     @parent
+    {{ Html::script(mix('assets/admin/js/dashboard.js')) }}
+    {{ Html::script(mix('assets/admin/js/users/edit.js')) }}
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="https://pivottable.js.org/dist/pivot.js"></script>
     <script>
-        $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
-        });
         $('input[name="dates"]').daterangepicker();
-
+        $.ajax({
+            url: 'reporting/all-data-product',
+            success: function(response){
+                $("#output").pivot(
+                    response,
+                    {
+                        rows: ["created_range"],
+                        cols: ["price_range"]
+                    }
+                );
+            }
+        })
         var productPriceRange = {
         _defaults: {
             type: 'doughnut',
@@ -76,10 +89,10 @@
                 url: 'reporting/chart-product',
                 success: function (response) {
                     self._defaults.data.datasets[0].data = [
-                        response.less_50000, 
-                        response._50000_99999, 
-                        response._100000_999999, 
-                        response.more_than_equal_1000000];
+                        response.less_50k, 
+                        response.more_1m, 
+                        response._50k_99k, 
+                        response._100k_999k];
                     new Chart($el.find('.canvasChartProduct'), self._defaults);
                 }
             });
@@ -88,12 +101,11 @@
 
     productPriceRange.init($('#product_price_range'));
     </script>
-    {{ Html::script(mix('assets/admin/js/dashboard.js')) }}
 @endsection
 
 @section('styles')
     @parent
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     {{ Html::style(mix('assets/admin/css/dashboard.css')) }}
+    {{ Html::style(mix('assets/admin/css/users/edit.css')) }}
+    <link rel="stylesheet" type="text/css" href="https://pivottable.js.org/dist/pivot.css">
 @endsection
