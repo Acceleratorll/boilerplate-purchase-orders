@@ -8,6 +8,7 @@ use Arcanedev\LogViewer\Entities\LogEntry;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Routing\Route;
 
 class DashboardController extends Controller
@@ -104,6 +105,29 @@ class DashboardController extends Controller
             })->count(),
         ];
 
+        return response($data);
+    }
+
+    public function getReportingPage()
+    {
+        $products = Product::all();
+        return view('admin.reporting', ['products' => $products]);
+    }
+
+    public function getDataProduct()
+    {
+        $products = Product::all();
+        return response($products);
+    }
+
+    public function getChartProduct()
+    {
+        $data = [
+            "less_50k" => 50,
+            "_50k_99k" => 43,
+            "_100k_999k" => 343,
+            "more_1m" => 21
+        ];
         return response($data);
     }
 }

@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -76,6 +77,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('purchase-order-lines/{id}/edit', 'PurchaseOrderController@getPurchaseOrderLinesEdit')->name('purchase.order.lines.edit');
     Route::get('purchase-order-lines/{id}/destroy', 'PurchaseOrderController@getPurchaseOrderLinesDestroy')->name('purchase.order.lines.destroy');
     Route::post('purchase-order-lines/insert', 'PurchaseOrderController@getPurchaseOrderLinesInsert')->name('purchase.order.lines.insert');
+
+    Route::get('reporting', 'DashboardController@getReportingPage')->name('reporting-page');
+    Route::get('reporting/all-data-product', 'DashboardController@getDataProduct')->name('reporting-data-product');
+    Route::get('reporting/chart-product', 'DashboardController@getChartProduct')->name('reporting-chart-product');
 });
 
 
