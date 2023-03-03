@@ -21,7 +21,7 @@ class CreateSocialAccountsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('provider', 32);
             $table->string('provider_id');
-            $table->string('token')->nullable();
+            $table->string('token', 255)->nullable();
             $table->string('avatar')->nullable();
             $table->timestamps();
 
